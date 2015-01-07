@@ -15,19 +15,21 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 var buttonPressed = function(){
-    postImage("http://soulflyer.co.uk/photos/medium/2014/09/04-Bute/DIW_8563.jpg",'Test post, (writing javascript to share pics on fb).\n If you are seeing this it means I havent managed to delete it yet');
+    postImage("http://soulflyer.co.uk/photos/medium/2014/09/04-Bute/DIW_8563.jpg");
 };
 
-var postImage = function(imageURL,message){
+var postImage = function(imageURL){
+    console.log('Attempting to log in to FaceBook');
+    var message = 'Test post, (writing javascript to share pics on fb).\n If you are seeing this it means I havent managed to delete it yet';
     FB.login(function(response){
         if (response.authResponse){
             var access_token = FB.getAuthResponse()['accessToken'];
             console.log('Acess Token = ' + access_token);
             FB.api('me/photos', 'post', { message: message, url: imageURL}, function(response){
                 if (!response || response.error){
-                    alert('error posting to facebook')
+                    alert('error posting to facebook');
                 }else{
-                    alert('Posted pic to Facebook')
+                    alert('Posted pic to Facebook');
                 }
             });
         } else {
