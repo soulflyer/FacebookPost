@@ -1,9 +1,8 @@
 input.fbinput {
-    background-image: url(/images/fbshare.png);
+    background-image: url(/divephotos/images/fbshare.png);
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: contain;
     border: none;
-    width: 80px;
-    height: 35px;
+    width: 35px;
 }

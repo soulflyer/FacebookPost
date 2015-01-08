@@ -18,9 +18,11 @@ var buttonPressed = function(){
     postImage("http://soulflyer.co.uk/photos/medium/2014/09/04-Bute/DIW_8563.jpg");
 };
 
-var postImage = function(imageURL){
+var postImage = function(imageURL,divecentre){
     console.log('Attempting to log in to FaceBook');
-    var message = 'Test post, (writing javascript to share pics on fb).\n If you are seeing this it means I havent managed to delete it yet';
+    divecentre = divecentre.replace(/_/g,' ');
+    var message = 'Picture by Soulflyer Photos http://soulflyer.com\n' + divecentre;
+    console.log(message);
     FB.login(function(response){
         if (response.authResponse){
             var access_token = FB.getAuthResponse()['accessToken'];
