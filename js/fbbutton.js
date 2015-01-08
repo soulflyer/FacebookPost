@@ -21,7 +21,8 @@ var buttonPressed = function(){
 var postImage = function(imageURL,divecentre){
     console.log('Attempting to log in to FaceBook');
     divecentre = divecentre.replace(/_/g,' ');
-    var message = 'Picture by Soulflyer Photos http://soulflyer.com\n' + divecentre;
+    usermessage = prompt("Posting to FaceBook, Add a message if you like\nHit return to just post the picture");
+    var message = usermessage + "\n" + 'Picture by Soulflyer Photos http://soulflyer.com\n' + divecentre;
     console.log(message);
     FB.login(function(response){
         if (response.authResponse){
