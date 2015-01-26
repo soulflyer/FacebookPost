@@ -20,23 +20,39 @@ var buttonPressed = function(){
 
 var postImage = function(imageURL,divecentre){
     console.log('Attempting to log in to FaceBook');
-    divecentre = divecentre.replace(/_/g,' ');
     usermessage = prompt("Posting to FaceBook, Add a message if you like\nHit return to just post the picture");
-    var message = usermessage + "\n" + 'Picture by Soulflyer Photos http://soulflyer.com\n' + divecentre;
-    console.log(message);
-    FB.login(function(response){
-        if (response.authResponse){
-            var access_token = FB.getAuthResponse()['accessToken'];
-            console.log('Acess Token = ' + access_token);
-            FB.api('me/photos', 'post', { message: message, url: imageURL}, function(response){
-                if (!response || response.error){
-                    alert('error posting to facebook');
-                }else{
-                    alert('Posted pic to Facebook');
-                }
-            });
-        } else {
-            console.log('User cancelled login');
+
+    if (usermessage != null){
+        if (usermessage != "") {
+            usermessage = usermessage + "\n";
         }
-    }, {scope: 'publish_actions'});
+        var message = usermessage + 'Picture by Soulflyer Photos http://soulflyer.com\n';
+        console.log(message);
+        if (!divecentre){
+            divecentre=320658371441269;
+            console.log(divecentre);
+        }
+
+        FB.login(function(response){
+            if (response.authResponse){
+                var access_token = FB.getAuthResponse()['accessToken'];
+                console.log('Acess Token = ' + access_token);
+                FB.api('me/photos', 'post',
+                       { message: message,
+                         url: imageURL,
+                         place: divecentre
+                       },
+                       function(response2){
+                           if (!response2 || response2.error){
+                               alert('error posting to facebook');
+                           }else{
+                               alert('Posted pic to Facebook');
+                           }
+                       });
+            } else {
+                console.log('User cancelled login');
+            }
+        }, {scope: 'publish_actions'});
+    }
+
 };

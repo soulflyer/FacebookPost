@@ -1,4 +1,5 @@
 input.fbinput {
+    /* visibility:hidden; */
     background-image: url(/divephotos/images/fbshare.png);
     background-repeat: no-repeat;
     background-color: transparent;
